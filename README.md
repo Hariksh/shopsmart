@@ -6,7 +6,7 @@
 
 A robust full-stack e-commerce application built with modern web technologies. This project demonstrates a cohesive architecture connecting a React frontend with a Node.js/Express backend.
 
-## ✨ Features
+##  Features
 
 - **Full-Stack Integration**: Seamless communication between React frontend and Express backend.
 - **RESTful API**: Structured API endpoints for data retrieval and management.
@@ -15,7 +15,7 @@ A robust full-stack e-commerce application built with modern web technologies. T
   - **Server**: Jest for backend logic verification.
 - **Modern Build Tooling**: Powered by Vite for lightning-fast development server and builds.
 
-## 🚀 Tech Stack
+##  Tech Stack
 
 ### Frontend
 - **Framework**: React
@@ -38,7 +38,7 @@ shopsmart/
 └── server/         # Backend Express API
 ```
 
-## 🛠️ Getting Started
+##  Getting Started
 
 Follow these instructions to get a copy of the project running on your local machine.
 
@@ -69,7 +69,7 @@ Follow these instructions to get a copy of the project running on your local mac
     npm install
     ```
 
-## 🏃‍♂️ Running Locally
+##  Running Locally
 
 ### 1. Start the Backend Server
 
@@ -100,7 +100,7 @@ npm run dev
 
 Open [http://localhost:5173](http://localhost:5173) in your browser to view the application.
 
-## 🧪 Running Tests
+##  Running Tests
 
 Ensure system reliability by running the test suites.
 
@@ -118,7 +118,7 @@ cd client
 npm test
 ```
 
-## 🚀 Deployment
+##  Deployment
 
 The project is configured for seamless deployment on **Render**.
 
@@ -127,14 +127,14 @@ The project is configured for seamless deployment on **Render**.
 
 Refer to `render.yaml` for infrastructure-as-code configuration.
 
-## 📝 Roadmap
+##  Roadmap
 
 - [ ] Database integration with Prisma & SQLite
 - [ ] User Authentication (JWT)
 - [ ] Product Catalog & Search
 - [ ] Shopping Cart & Checkout Flow
 
-## 🤝 Contributing
+##  Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
