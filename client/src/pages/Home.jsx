@@ -1,111 +1,385 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ShoppingBag, LogIn, UserPlus, ArrowRight } from 'lucide-react';
+import {
+  ShoppingBag,
+  Search,
+  Menu,
+  X,
+  User,
+  Heart,
+  ShoppingCart,
+  ChevronRight,
+  Star,
+  Truck,
+  ShieldCheck,
+  Clock,
+  ArrowRight
+} from 'lucide-react';
 
 function Home() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const categories = [
+    { name: 'Electronics', image: 'https://images.unsplash.com/photo-1498049860654-af1a5c5668ba?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60' },
+    { name: 'Fashion', image: 'https://images.unsplash.com/photo-1445205170230-053b83016050?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60' },
+    { name: 'Home & Living', image: 'https://images.unsplash.com/photo-1484101403633-562f891dc89a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60' },
+    { name: 'Beauty', image: 'https://images.unsplash.com/photo-1596462502278-27bfdd403348?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60' },
+  ];
+
+  const featuredProducts = [
+    {
+      id: 1,
+      name: 'Premium Wireless Headphones',
+      price: 299.99,
+      rating: 4.8,
+      image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+      category: 'Electronics'
+    },
+    {
+      id: 2,
+      name: 'Smart Fitness Watch',
+      price: 199.99,
+      rating: 4.6,
+      image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+      category: 'Accessories'
+    },
+    {
+      id: 3,
+      name: 'Ergonomic Office Chair',
+      price: 249.99,
+      rating: 4.9,
+      image: 'https://images.unsplash.com/photo-1505843490538-5133c6c7d0e1?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+      category: 'Furniture'
+    },
+    {
+      id: 4,
+      name: 'Designer Sunglasses',
+      price: 159.99,
+      rating: 4.5,
+      image: 'https://images.unsplash.com/photo-1572635196237-14b3f281503f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+      category: 'Fashion'
+    }
+  ];
+
   return (
-    <div className="min-h-screen bg-gray-50">
-      <header className="bg-yellow-500 shadow-md">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <ShoppingBag className="h-8 w-8 text-white" />
-            <h1 className="text-2xl font-bold text-white">ShopSmart</h1>
-          </div>
-          <nav className="flex gap-3">
-            <Link
-              to="/login"
-              className="flex items-center gap-2 px-5 py-2 bg-white text-yellow-600 font-semibold rounded-md hover:bg-gray-100 transition-colors"
-            >
-              <LogIn className="h-4 w-4" />
-              Login
+    <div className="min-h-screen bg-gray-50 font-sans">
+      <nav className="bg-white shadow-sm sticky top-0 z-50">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-between h-20">
+            <Link to="/" className="flex items-center gap-2">
+              <div className="bg-yellow-500 p-2 rounded-lg">
+                <ShoppingBag className="h-6 w-6 text-white" />
+              </div>
+              <span className="text-2xl font-bold text-gray-800">ShopSmart</span>
             </Link>
-            <Link
-              to="/signup"
-              className="flex items-center gap-2 px-5 py-2 bg-yellow-600 text-white font-semibold rounded-md hover:bg-yellow-700 transition-colors"
-            >
-              <UserPlus className="h-4 w-4" />
-              Sign Up
-            </Link>
-          </nav>
-        </div>
-      </header>
 
-      <main className="container mx-auto px-4 py-16">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-5xl font-bold text-gray-800 mb-6">
-            Welcome to ShopSmart
-          </h2>
-          <p className="text-xl text-gray-600 mb-8">
-            Your one-stop shop for all your needs. Quality products at affordable prices.
-          </p>
-          <div className="flex gap-4 justify-center">
-            <Link
-              to="/signup"
-              className="flex items-center gap-2 px-8 py-4 bg-yellow-500 text-white font-semibold rounded-lg hover:bg-yellow-600 transition-colors shadow-lg"
-            >
-              Get Started
-              <ArrowRight className="h-5 w-5" />
-            </Link>
-          </div>
-        </div>
+            {/* Desktop Search */}
+            <div className="hidden md:flex flex-1 max-w-2xl mx-12">
+              <div className="relative w-full">
+                <input
+                  type="text"
+                  placeholder="Search for products, brands and more..."
+                  className="w-full pl-10 pr-4 py-2.5 bg-gray-100 border-none rounded-lg focus:ring-2 focus:ring-yellow-500 focus:bg-white transition-all outline-none"
+                />
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
+              </div>
+            </div>
 
-        <div className="grid md:grid-cols-3 gap-8 mt-20">
-          <div className="bg-white p-6 rounded-lg shadow-md text-center">
-            <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <ShoppingBag className="h-8 w-8 text-yellow-600" />
+            {/* Desktop Actions */}
+            <div className="hidden md:flex items-center gap-6">
+              <Link to="/login" className="flex flex-col items-center gap-1 text-gray-600 hover:text-yellow-600 transition-colors">
+                <User className="h-6 w-6" />
+                <span className="text-xs font-medium">Login</span>
+              </Link>
+              <button className="flex flex-col items-center gap-1 text-gray-600 hover:text-yellow-600 transition-colors">
+                <Heart className="h-6 w-6" />
+                <span className="text-xs font-medium">Wishlist</span>
+              </button>
+              <button className="flex flex-col items-center gap-1 text-gray-600 hover:text-yellow-600 transition-colors relative">
+                <div className="relative">
+                  <ShoppingCart className="h-6 w-6" />
+                  <span className="absolute -top-1 -right-1 bg-yellow-500 text-white text-[10px] font-bold h-4 w-4 rounded-full flex items-center justify-center">
+                    2
+                  </span>
+                </div>
+                <span className="text-xs font-medium">Cart</span>
+              </button>
             </div>
-            <h3 className="text-xl font-semibold text-gray-800 mb-2">Wide Selection</h3>
-            <p className="text-gray-600">Browse thousands of products across multiple categories</p>
+
+            <button
+              className="md:hidden p-2 text-gray-600"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
           </div>
-          <div className="bg-white p-6 rounded-lg shadow-md text-center">
-            <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg className="h-8 w-8 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
+
+          <div className="md:hidden pb-4">
+            <div className="relative">
+              <input
+                type="text"
+                placeholder="Search products..."
+                className="w-full pl-10 pr-4 py-2 bg-gray-100 border-none rounded-lg"
+              />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
             </div>
-            <h3 className="text-xl font-semibold text-gray-800 mb-2">Best Prices</h3>
-            <p className="text-gray-600">Competitive pricing with regular discounts and offers</p>
-          </div>
-          <div className="bg-white p-6 rounded-lg shadow-md text-center">
-            <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg className="h-8 w-8 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-              </svg>
-            </div>
-            <h3 className="text-xl font-semibold text-gray-800 mb-2">Fast Delivery</h3>
-            <p className="text-gray-600">Quick and reliable shipping to your doorstep</p>
           </div>
         </div>
-      </main>
 
-      <footer className="bg-gray-800 text-white mt-20">
-        <div className="container mx-auto px-4 py-8">
-          <div className="grid md:grid-cols-3 gap-8">
+        {/* Mobile Menu */}
+        {isMenuOpen && (
+          <div className="md:hidden border-t border-gray-100 bg-white">
+            <div className="px-4 py-2 space-y-1">
+              <Link to="/login" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-yellow-50 hover:text-yellow-600">Login</Link>
+              <Link to="/orders" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-yellow-50 hover:text-yellow-600">Orders</Link>
+              <Link to="/wishlist" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-yellow-50 hover:text-yellow-600">Wishlist</Link>
+              <Link to="/cart" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-yellow-50 hover:text-yellow-600">Cart</Link>
+            </div>
+          </div>
+        )}
+      </nav>
+      <section className="relative bg-gray-900 text-white overflow-hidden">
+        <div className="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80"
+            alt="Hero background"
+            className="w-full h-full object-cover opacity-40"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent"></div>
+        </div>
+
+        <div className="container mx-auto px-4 py-24 md:py-32 relative z-10">
+          <div className="max-w-2xl">
+            <span className="inline-block px-4 py-1.5 bg-yellow-500 text-white text-sm font-bold rounded-full mb-6">
+              NEW SEASON ARRIVALS
+            </span>
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+              Upgrade Your <br />
+              <span className="text-yellow-400">Lifestyle</span>
+            </h1>
+            <p className="text-lg md:text-xl text-gray-300 mb-8 leading-relaxed">
+              Discover the latest trends in fashion, electronics, and home decor.
+              Premium quality products at unbeatable prices.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <button className="px-8 py-4 bg-yellow-500 hover:bg-yellow-600 text-white font-bold rounded-lg transition-all transform hover:scale-105 flex items-center justify-center gap-2 group">
+                Shop Now
+                <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              </button>
+              <button className="px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-bold rounded-lg backdrop-blur-sm transition-all border border-white/30">
+                View Collections
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="bg-white py-12 border-b border-gray-100">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            {[
+              { icon: Truck, title: 'Free Shipping', desc: 'On orders over $100' },
+              { icon: ShieldCheck, title: 'Secure Payment', desc: '100% secure payment' },
+              { icon: Clock, title: '24/7 Support', desc: 'Dedicated support' },
+              { icon: Star, title: 'Best Quality', desc: 'Premium products' },
+            ].map((feature, idx) => (
+              <div key={idx} className="flex items-center gap-4 p-4 rounded-xl hover:bg-gray-50 transition-colors cursor-pointer">
+                <div className="p-3 bg-yellow-100 rounded-full">
+                  <feature.icon className="h-6 w-6 text-yellow-600" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-gray-800">{feature.title}</h3>
+                  <p className="text-sm text-gray-500">{feature.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Categories Section */}
+      <section className="py-16 container mx-auto px-4">
+        <div className="flex items-center justify-between mb-10">
+          <h2 className="text-3xl font-bold text-gray-800">Shop by Category</h2>
+          <button className="text-yellow-600 font-semibold hover:text-yellow-700 flex items-center gap-1 group">
+            View All
+            <ChevronRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+          </button>
+        </div>
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          {categories.map((category, idx) => (
+            <div key={idx} className="group relative rounded-xl overflow-hidden cursor-pointer shadow-md hover:shadow-xl transition-shadow h-64">
+              <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors z-10"></div>
+              <img
+                src={category.image}
+                alt={category.name}
+                className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+              />
+              <div className="absolute bottom-0 left-0 right-0 p-6 z-20 bg-gradient-to-t from-black/80 to-transparent">
+                <h3 className="text-xl font-bold text-white mb-2">{category.name}</h3>
+                <span className="text-yellow-400 text-sm font-medium flex items-center gap-1 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                  Shop Now <ArrowRight className="h-4 w-4" />
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Featured Products */}
+      <section className="bg-white py-16">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-between mb-10">
+            <h2 className="text-3xl font-bold text-gray-800">Trending Products</h2>
+            <div className="flex gap-2">
+              <button className="p-2 rounded-full border border-gray-200 hover:bg-gray-100 hover:text-yellow-600 transition-colors">
+                <ChevronRight className="h-5 w-5 rotate-180" />
+              </button>
+              <button className="p-2 rounded-full border border-gray-200 hover:bg-gray-100 hover:text-yellow-600 transition-colors">
+                <ChevronRight className="h-5 w-5" />
+              </button>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+            {featuredProducts.map((product) => (
+              <div key={product.id} className="group bg-white rounded-xl overflow-hidden border border-gray-100 hover:shadow-xl transition-all duration-300">
+                <div className="relative h-64 overflow-hidden bg-gray-100">
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute top-4 right-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity transform translate-x-4 group-hover:translate-x-0 duration-300">
+                    <button className="p-2 bg-white rounded-full shadow-lg text-gray-500 hover:text-red-500 transition-colors">
+                      <Heart className="h-5 w-5" />
+                    </button>
+                  </div>
+                  <div className="absolute top-4 left-4">
+                    <span className="px-2 py-1 bg-yellow-500 text-white text-xs font-bold rounded">HOT</span>
+                  </div>
+                </div>
+
+                <div className="p-5">
+                  <div className="text-xs text-gray-500 mb-2">{product.category}</div>
+                  <h3 className="font-bold text-gray-800 mb-2 truncate group-hover:text-yellow-600 transition-colors">
+                    {product.name}
+                  </h3>
+                  <div className="flex items-center gap-1 mb-3">
+                    <div className="flex text-yellow-400">
+                      {[1, 2, 3, 4, 5].map((s) => (
+                        <Star key={s} className={`h-3 w-3 ${s <= Math.floor(product.rating) ? 'fill-current' : ''}`} />
+                      ))}
+                    </div>
+                    <span className="text-xs text-gray-400">({product.rating})</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-xl font-bold text-gray-900">${product.price}</span>
+                    <button className="p-2 bg-gray-100 rounded-lg text-gray-600 hover:bg-yellow-500 hover:text-white transition-all transform hover:scale-110">
+                      <ShoppingCart className="h-5 w-5" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Newsletter Section */}
+      <section className="bg-yellow-500 py-16">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto text-center text-white">
+            <h2 className="text-3xl font-bold mb-4">Subscribe to our Newsletter</h2>
+            <p className="text-white/80 mb-8 text-lg">
+              Get the latest updates on new products and upcoming sales.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
+              <input
+                type="email"
+                placeholder="Enter your email address"
+                className="flex-1 px-6 py-4 rounded-lg text-gray-800 focus:outline-none focus:ring-4 focus:ring-black/10"
+              />
+              <button className="px-8 py-4 bg-gray-900 text-white font-bold rounded-lg hover:bg-gray-800 transition-colors shadow-lg">
+                Subscribe
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-white pt-20 pb-10">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
             <div>
-              <h4 className="text-lg font-semibold mb-4">ShopSmart</h4>
-              <p className="text-gray-400">Your one-stop shop for all your needs. Quality products at affordable prices.</p>
+              <div className="flex items-center gap-2 mb-6">
+                <div className="bg-yellow-500 p-1.5 rounded-lg">
+                  <ShoppingBag className="h-5 w-5 text-white" />
+                </div>
+                <span className="text-xl font-bold">ShopSmart</span>
+              </div>
+              <p className="text-gray-400 leading-relaxed mb-6">
+                Your one-stop destination for premium products. We bring the best of the world to your doorstep.
+              </p>
+              <div className="flex gap-4">
+                {['facebook', 'twitter', 'instagram', 'linkedin'].map((social) => (
+                  <a key={social} href="#" className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-yellow-500 hover:text-white transition-all">
+                    <span className="sr-only">{social}</span>
+                    <div className="w-4 h-4 bg-current rounded-sm"></div>
+                  </a>
+                ))}
+              </div>
             </div>
+
             <div>
-              <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li><a href="#" className="hover:text-yellow-500">About Us</a></li>
-                <li><a href="#" className="hover:text-yellow-500">Contact</a></li>
-                <li><a href="#" className="hover:text-yellow-500">Terms & Conditions</a></li>
-                <li><a href="#" className="hover:text-yellow-500">Privacy Policy</a></li>
+              <h4 className="text-lg font-bold mb-6">Quick Links</h4>
+              <ul className="space-y-4 text-gray-400">
+                <li><Link to="/" className="hover:text-yellow-500 transition-colors">Home</Link></li>
+                <li><Link to="/about" className="hover:text-yellow-500 transition-colors">About Us</Link></li>
+                <li><Link to="/products" className="hover:text-yellow-500 transition-colors">Products</Link></li>
+                <li><Link to="/contact" className="hover:text-yellow-500 transition-colors">Contact</Link></li>
               </ul>
             </div>
+
             <div>
-              <h4 className="text-lg font-semibold mb-4">Customer Service</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li><a href="#" className="hover:text-yellow-500">Shipping Information</a></li>
-                <li><a href="#" className="hover:text-yellow-500">Returns & Exchanges</a></li>
-                <li><a href="#" className="hover:text-yellow-500">Payment Methods</a></li>
-                <li><a href="#" className="hover:text-yellow-500">Help Center</a></li>
+              <h4 className="text-lg font-bold mb-6">Customer Service</h4>
+              <ul className="space-y-4 text-gray-400">
+                <li><Link to="/faq" className="hover:text-yellow-500 transition-colors">FAQ</Link></li>
+                <li><Link to="/shipping" className="hover:text-yellow-500 transition-colors">Shipping Policy</Link></li>
+                <li><Link to="/returns" className="hover:text-yellow-500 transition-colors">Returns & Refunds</Link></li>
+                <li><Link to="/privacy" className="hover:text-yellow-500 transition-colors">Privacy Policy</Link></li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="text-lg font-bold mb-6">Contact Us</h4>
+              <ul className="space-y-4 text-gray-400">
+                <li className="flex items-start gap-3">
+                  <div className="mt-1">📍</div>
+                  <span>123 Commerce St, Suite 100<br />New York, NY 10001</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <div>📞</div>
+                  <span>+1 (555) 123-4567</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <div>✉️</div>
+                  <span>support@shopsmart.com</span>
+                </li>
               </ul>
             </div>
           </div>
-          <div className="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400">
+
+          <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row items-center justify-between text-gray-500 text-sm">
             <p>&copy; 2026 ShopSmart. All rights reserved.</p>
+            <div className="flex gap-6 mt-4 md:mt-0">
+              <Link to="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
+              <Link to="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
+              <Link to="/cookies" className="hover:text-white transition-colors">Cookie Policy</Link>
+            </div>
           </div>
         </div>
       </footer>

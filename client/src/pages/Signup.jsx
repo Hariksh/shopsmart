@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { User, Mail, Lock, UserPlus, Phone } from 'lucide-react';
 
 const Signup = () => {
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -21,6 +22,8 @@ const Signup = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log('Signup attempt:', formData);
+        // Simulate successful signup
+        navigate('/');
     };
 
     return (
@@ -121,7 +124,7 @@ const Signup = () => {
                                     value={formData.confirmPassword}
                                     onChange={handleChange}
                                     className="pl-10 w-full px-4 py-2.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none"
-                                    required/>
+                                    required />
                             </div>
                         </div>
 
