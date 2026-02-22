@@ -84,13 +84,13 @@ function Home() {
               Premium quality products at unbeatable prices.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <button className="px-8 py-4 bg-yellow-500 hover:bg-yellow-600 text-white font-bold rounded-lg transition-all transform hover:scale-105 flex items-center justify-center gap-2 group">
+              <Link to="/products" className="px-8 py-4 bg-yellow-500 hover:bg-yellow-600 text-white font-bold rounded-lg transition-all transform hover:scale-105 flex items-center justify-center gap-2 group">
                 Shop Now
                 <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </button>
-              <button className="px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-bold rounded-lg backdrop-blur-sm transition-all border border-white/30">
+              </Link>
+              <Link to="/products" className="px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-bold rounded-lg backdrop-blur-sm transition-all border border-white/30">
                 View Collections
-              </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -124,15 +124,15 @@ function Home() {
       <section className="py-16 container mx-auto px-4">
         <div className="flex items-center justify-between mb-10">
           <h2 className="text-3xl font-bold text-gray-800">Shop by Category</h2>
-          <button className="text-yellow-600 font-semibold hover:text-yellow-700 flex items-center gap-1 group">
+          <Link to="/products" className="text-yellow-600 font-semibold hover:text-yellow-700 flex items-center gap-1 group">
             View All
             <ChevronRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
-          </button>
+          </Link>
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {categories.map((category, idx) => (
-            <div key={idx} className="group relative rounded-xl overflow-hidden cursor-pointer shadow-md hover:shadow-xl transition-shadow h-64">
+            <Link key={idx} to={`/products?category=${encodeURIComponent(category.name)}`} className="group relative rounded-xl overflow-hidden cursor-pointer shadow-md hover:shadow-xl transition-shadow h-64 block">
               <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors z-10"></div>
               <img
                 src={category.image}
@@ -145,7 +145,7 @@ function Home() {
                   Shop Now <ArrowRight className="h-4 w-4" />
                 </span>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </section>
