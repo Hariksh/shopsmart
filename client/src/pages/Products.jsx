@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import {
-    Search, Filter, ChevronDown, Star, Heart, ShoppingCart,
+    Search, ChevronDown, Star, Heart, ShoppingCart,
     ChevronLeft, ChevronRight, Loader2, PackageX, X, SlidersHorizontal
 } from 'lucide-react';
 import Navbar from '../components/Navbar';
@@ -88,7 +88,7 @@ function Products() {
                     <p className="text-gray-400">
                         {totalProducts > 0 ? `Showing ${totalProducts} product${totalProducts !== 1 ? 's' : ''}` : 'Browse our collection'}
                         {category && <span className="text-yellow-400"> in {category}</span>}
-                        {search && <span className="text-yellow-400"> matching "{search}"</span>}
+                        {search && <span className="text-yellow-400"> matching &quot;{search}&quot;</span>}
                     </p>
                 </div>
             </div>
@@ -200,7 +200,7 @@ function Products() {
                                 )}
                                 {search && (
                                     <span className="inline-flex items-center gap-1 px-3 py-1.5 bg-blue-50 text-blue-700 rounded-full text-sm font-medium">
-                                        "{search}"
+                                        &quot;{search}&quot;
                                         <button onClick={() => { setSearchInput(''); updateParams({ search: '' }); }} className="hover:text-blue-900">
                                             <X className="h-3.5 w-3.5" />
                                         </button>
@@ -224,7 +224,7 @@ function Products() {
                             <div className="flex flex-col items-center justify-center py-24 text-center">
                                 <PackageX className="h-16 w-16 text-gray-300 mb-4" />
                                 <h3 className="text-xl font-bold text-gray-700 mb-2">No products found</h3>
-                                <p className="text-gray-500 mb-6">Try adjusting your search or filter to find what you're looking for.</p>
+                                <p className="text-gray-500 mb-6">Try adjusting your search or filter to find what you&apos;re looking for.</p>
                                 <button
                                     onClick={() => { setSearchInput(''); setSearchParams({}); }}
                                     className="px-6 py-3 bg-yellow-500 text-white font-semibold rounded-lg hover:bg-yellow-600 transition-colors"
@@ -322,8 +322,8 @@ function Products() {
                                                 key={p}
                                                 onClick={() => updateParams({ page: p.toString() })}
                                                 className={`w-10 h-10 rounded-lg text-sm font-medium transition-colors ${p === page
-                                                        ? 'bg-yellow-500 text-white'
-                                                        : 'border border-gray-200 text-gray-600 hover:bg-gray-100'
+                                                    ? 'bg-yellow-500 text-white'
+                                                    : 'border border-gray-200 text-gray-600 hover:bg-gray-100'
                                                     }`}
                                             >
                                                 {p}

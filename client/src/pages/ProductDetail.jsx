@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import {
     ArrowLeft, Star, ShoppingCart, Heart, Truck, ShieldCheck,
@@ -53,7 +53,7 @@ function ProductDetail() {
                 <div className="flex flex-col items-center justify-center py-32 text-center px-4">
                     <PackageX className="h-16 w-16 text-gray-300 mb-4" />
                     <h2 className="text-2xl font-bold text-gray-700 mb-2">Product Not Found</h2>
-                    <p className="text-gray-500 mb-6">The product you're looking for doesn't exist or has been removed.</p>
+                    <p className="text-gray-500 mb-6">The product you&apos;re looking for doesn&apos;t exist or has been removed.</p>
                     <Link
                         to="/products"
                         className="px-6 py-3 bg-yellow-500 text-white font-semibold rounded-lg hover:bg-yellow-600 transition-colors"

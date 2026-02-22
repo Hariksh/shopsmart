@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Mail, Lock, LogIn } from 'lucide-react';
 
@@ -93,7 +93,7 @@ const Login = () => {
           </form>
 
           <div className="text-center mt-6 text-sm text-gray-600">
-            Don't have an account?{" "}
+            Don&apos;t have an account?{" "}
             <Link to="/signup" className="text-yellow-600 hover:text-yellow-700 font-medium">
               Sign up
             </Link>
