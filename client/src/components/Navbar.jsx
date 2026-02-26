@@ -1,9 +1,17 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { ShoppingBag, Search, Menu, X, User, Heart, ShoppingCart } from 'lucide-react';
+import { useState, useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { ShoppingBag, Search, Menu, X, User, Heart, ShoppingCart, LogOut, LayoutDashboard } from 'lucide-react';
+import AuthContext from '../context/AuthContext';
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const { user, logout } = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        logout();
+        navigate('/login');
+    };
 
     return (
         <nav className="bg-white shadow-sm sticky top-0 z-50">
@@ -28,10 +36,23 @@ const Navbar = () => {
                     </div>
 
                     <div className="hidden md:flex items-center gap-6">
-                        <Link to="/login" className="flex flex-col items-center gap-1 text-gray-600 hover:text-yellow-600 transition-colors">
-                            <User className="h-6 w-6" />
-                            <span className="text-xs font-medium">Login</span>
-                        </Link>
+                        {user?.role === 'admin' && (
+                            <Link to="/admin" className="flex flex-col items-center gap-1 text-yellow-600 hover:text-yellow-700 transition-colors">
+                                <LayoutDashboard className="h-6 w-6" />
+                                <span className="text-xs font-medium">Admin</span>
+                            </Link>
+                        )}
+                        {user ? (
+                            <button onClick={handleLogout} className="flex flex-col items-center gap-1 text-gray-600 hover:text-red-600 transition-colors">
+                                <LogOut className="h-6 w-6" />
+                                <span className="text-xs font-medium">Logout</span>
+                            </button>
+                        ) : (
+                            <Link to="/login" className="flex flex-col items-center gap-1 text-gray-600 hover:text-yellow-600 transition-colors">
+                                <User className="h-6 w-6" />
+                                <span className="text-xs font-medium">Login</span>
+                            </Link>
+                        )}
                         <button className="flex flex-col items-center gap-1 text-gray-600 hover:text-yellow-600 transition-colors">
                             <Heart className="h-6 w-6" />
                             <span className="text-xs font-medium">Wishlist</span>
@@ -70,7 +91,14 @@ const Navbar = () => {
             {isMenuOpen && (
                 <div className="md:hidden border-t border-gray-100 bg-white">
                     <div className="px-4 py-2 space-y-1">
-                        <Link to="/login" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-yellow-50 hover:text-yellow-600">Login</Link>
+                        {user ? (
+                            <button onClick={handleLogout} className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-red-600 hover:bg-red-50">Logout</button>
+                        ) : (
+                            <Link to="/login" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-yellow-50 hover:text-yellow-600">Login</Link>
+                        )}
+                        {user?.role === 'admin' && (
+                            <Link to="/admin" className="block px-3 py-2 rounded-md text-base font-bold text-yellow-600 hover:bg-yellow-50">Admin Dashboard</Link>
+                        )}
                         <Link to="/orders" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-yellow-50 hover:text-yellow-600">Orders</Link>
                         <Link to="/wishlist" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-yellow-50 hover:text-yellow-600">Wishlist</Link>
                         <Link to="/cart" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-yellow-50 hover:text-yellow-600">Cart</Link>

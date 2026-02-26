@@ -16,11 +16,28 @@ const Login = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Login attempt:', formData);
-    // Simulate successful login
-    navigate('/');
+    try {
+      const res = await fetch('http://localhost:5005/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+      const data = await res.json();
+
+      if (res.ok) {
+        // In a real app, decode token or fetch /me. Here we simulate for admin testing
+        const userObj = { email: formData.email, role: formData.email === 'admin@shopsmart.com' ? 'admin' : 'user' };
+        login(userObj);
+        localStorage.setItem('token', data.token);
+        navigate('/');
+      } else {
+        alert(data.msg || 'Login failed');
+      }
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (
