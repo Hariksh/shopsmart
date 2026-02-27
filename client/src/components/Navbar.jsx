@@ -43,10 +43,16 @@ const Navbar = () => {
                             </Link>
                         )}
                         {user ? (
-                            <button onClick={handleLogout} className="flex flex-col items-center gap-1 text-gray-600 hover:text-red-600 transition-colors">
-                                <LogOut className="h-6 w-6" />
-                                <span className="text-xs font-medium">Logout</span>
-                            </button>
+                            <>
+                                <Link to="/profile" className="flex flex-col items-center gap-1 text-gray-600 hover:text-yellow-600 transition-colors">
+                                    <User className="h-6 w-6" />
+                                    <span className="text-xs font-medium">Profile</span>
+                                </Link>
+                                <button onClick={handleLogout} className="flex flex-col items-center gap-1 text-gray-600 hover:text-red-600 transition-colors">
+                                    <LogOut className="h-6 w-6" />
+                                    <span className="text-xs font-medium">Logout</span>
+                                </button>
+                            </>
                         ) : (
                             <Link to="/login" className="flex flex-col items-center gap-1 text-gray-600 hover:text-yellow-600 transition-colors">
                                 <User className="h-6 w-6" />
