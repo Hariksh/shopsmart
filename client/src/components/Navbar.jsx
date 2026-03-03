@@ -24,6 +24,12 @@ const Navbar = () => {
                         <span className="text-2xl font-bold text-gray-800">ShopSmart</span>
                     </Link>
 
+                    <div className="hidden md:flex items-center ml-8">
+                        <Link to="/electronics" className="text-gray-600 font-medium hover:text-yellow-500 transition-colors">
+                            Electronics
+                        </Link>
+                    </div>
+
                     <div className="hidden md:flex flex-1 max-w-2xl mx-12">
                         <div className="relative w-full">
                             <input
@@ -105,6 +111,7 @@ const Navbar = () => {
                         {user?.role === 'admin' && (
                             <Link to="/admin" className="block px-3 py-2 rounded-md text-base font-bold text-yellow-600 hover:bg-yellow-50">Admin Dashboard</Link>
                         )}
+                        <Link to="/electronics" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-yellow-50 hover:text-yellow-600">Electronics</Link>
                         <Link to="/orders" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-yellow-50 hover:text-yellow-600">Orders</Link>
                         <Link to="/wishlist" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-yellow-50 hover:text-yellow-600">Wishlist</Link>
                         <Link to="/cart" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-yellow-50 hover:text-yellow-600">Cart</Link>
