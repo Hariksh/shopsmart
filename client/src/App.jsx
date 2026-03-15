@@ -10,6 +10,8 @@ import AdminDashboard from './pages/AdminDashboard';
 import ProtectedRoute from './components/ProtectedRoute';
 import Profile from './pages/Profile';
 import Electronics from './pages/Electronics';
+import Fashion from './pages/Fashion';
+import HomeBeauty from './pages/HomeBeauty';
 
 function App() {
     return (
@@ -22,6 +24,8 @@ function App() {
                     <Route path="/products" element={<Products />} />
                     <Route path="/products/:id" element={<ProductDetail />} />
                     <Route path="/electronics" element={<Electronics />} />
+                    <Route path="/fashion" element={<Fashion />} />
+                    <Route path="/beauty" element={<HomeBeauty />} />
                     <Route element={<ProtectedRoute />}>
                         <Route path="/profile" element={<Profile />} />
                     </Route>
