@@ -11,7 +11,8 @@ import ProtectedRoute from './components/ProtectedRoute';
 import Profile from './pages/Profile';
 import Electronics from './pages/Electronics';
 import Fashion from './pages/Fashion';
-import HomeBeauty from './pages/HomeBeauty';
+import HomeLiving from './pages/HomeLiving';
+import Accessories from './pages/Accessories';
 
 function App() {
     return (
@@ -25,7 +26,8 @@ function App() {
                     <Route path="/products/:id" element={<ProductDetail />} />
                     <Route path="/electronics" element={<Electronics />} />
                     <Route path="/fashion" element={<Fashion />} />
-                    <Route path="/beauty" element={<HomeBeauty />} />
+                    <Route path="/home-living" element={<HomeLiving />} />
+                    <Route path="/accessories" element={<Accessories />} />
                     <Route element={<ProtectedRoute />}>
                         <Route path="/profile" element={<Profile />} />
                     </Route>

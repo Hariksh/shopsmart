@@ -31,8 +31,11 @@ const Navbar = () => {
                         <Link to="/fashion" className="text-gray-600 font-medium hover:text-pink-600 transition-colors">
                             Fashion
                         </Link>
-                        <Link to="/beauty" className="text-gray-600 font-medium hover:text-rose-500 transition-colors">
-                            Home & Beauty
+                        <Link to="/home-living" className="text-gray-600 font-medium hover:text-emerald-600 transition-colors">
+                            Home & Living Items
+                        </Link>
+                        <Link to="/accessories" className="text-gray-600 font-medium hover:text-purple-600 transition-colors">
+                            Accessories
                         </Link>
                     </div>
 
@@ -119,7 +122,8 @@ const Navbar = () => {
                         )}
                         <Link to="/electronics" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-yellow-50 hover:text-yellow-600">Electronics</Link>
                         <Link to="/fashion" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-pink-50 hover:text-pink-600">Fashion</Link>
-                        <Link to="/beauty" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-rose-50 hover:text-rose-500">Home & Beauty</Link>
+                        <Link to="/home-living" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-emerald-50 hover:text-emerald-600">Home & Living Items</Link>
+                        <Link to="/accessories" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-purple-50 hover:text-purple-600">Accessories</Link>
                         <Link to="/orders" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-yellow-50 hover:text-yellow-600">Orders</Link>
                         <Link to="/wishlist" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-yellow-50 hover:text-yellow-600">Wishlist</Link>
                         <Link to="/cart" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-yellow-50 hover:text-yellow-600">Cart</Link>
