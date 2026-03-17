@@ -13,6 +13,7 @@ import Electronics from './pages/Electronics';
 import Fashion from './pages/Fashion';
 import HomeLiving from './pages/HomeLiving';
 import Accessories from './pages/Accessories';
+import Furniture from './pages/Furniture';
 
 function App() {
     return (
@@ -28,6 +29,7 @@ function App() {
                     <Route path="/fashion" element={<Fashion />} />
                     <Route path="/home-living" element={<HomeLiving />} />
                     <Route path="/accessories" element={<Accessories />} />
+                    <Route path="/furniture" element={<Furniture />} />
                     <Route element={<ProtectedRoute />}>
                         <Route path="/profile" element={<Profile />} />
                     </Route>

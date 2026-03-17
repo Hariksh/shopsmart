@@ -37,6 +37,9 @@ const Navbar = () => {
                         <Link to="/accessories" className="text-gray-600 font-medium hover:text-purple-600 transition-colors">
                             Accessories
                         </Link>
+                        <Link to="/furniture" className="text-gray-600 font-medium hover:text-amber-600 transition-colors">
+                            Furniture
+                        </Link>
                     </div>
 
                     <div className="hidden md:flex flex-1 max-w-2xl mx-12">
@@ -124,6 +127,7 @@ const Navbar = () => {
                         <Link to="/fashion" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-pink-50 hover:text-pink-600">Fashion</Link>
                         <Link to="/home-living" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-emerald-50 hover:text-emerald-600">Home & Living Items</Link>
                         <Link to="/accessories" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-purple-50 hover:text-purple-600">Accessories</Link>
+                        <Link to="/furniture" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-amber-50 hover:text-amber-600">Furniture</Link>
                         <Link to="/orders" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-yellow-50 hover:text-yellow-600">Orders</Link>
                         <Link to="/wishlist" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-yellow-50 hover:text-yellow-600">Wishlist</Link>
                         <Link to="/cart" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-yellow-50 hover:text-yellow-600">Cart</Link>
