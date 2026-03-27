@@ -58,39 +58,3 @@ exports.updateUserProfile = async (req, res) => {
     }
 };
 
-// @desc    Get logged in user orders
-// @route   GET /api/orders/myorders
-// @access  Private
-exports.getMyOrders = async (req, res) => {
-    try {
-        // Since we don't have an Order model yet, we'll return mock data 
-        // that's tied to the current user to satisfy the UI requirement.
-        const mockOrders = [
-            {
-                _id: 'ord_' + Math.floor(Math.random() * 1000000),
-                createdAt: new Date(Date.now() - 86400000 * 2), // 2 days ago
-                totalPrice: 129.99,
-                isPaid: true,
-                isDelivered: false,
-                orderItems: [
-                    { name: 'Wireless Headphones', qty: 1, price: 129.99 }
-                ]
-            },
-            {
-                _id: 'ord_' + Math.floor(Math.random() * 1000000),
-                createdAt: new Date(Date.now() - 86400000 * 15), // 15 days ago
-                totalPrice: 45.50,
-                isPaid: true,
-                isDelivered: true,
-                orderItems: [
-                    { name: 'Ergonomic Mouse', qty: 1, price: 45.50 }
-                ]
-            }
-        ];
-
-        res.json(mockOrders);
-    } catch (err) {
-        console.error(err.message);
-        res.status(500).json({ msg: 'Server Error' });
-    }
-};

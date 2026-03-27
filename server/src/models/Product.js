@@ -25,6 +25,11 @@ const productSchema = new mongoose.Schema({
         required: true,
         enum: ['Electronics', 'Fashion', 'Home & Living', 'Beauty', 'Accessories', 'Furniture']
     },
+    categoryRef: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Category',
+        default: null
+    },
     image: {
         type: String,
         required: true
