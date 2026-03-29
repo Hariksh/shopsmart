@@ -39,3 +39,4 @@ pnpm-debug.log*
 .dockerignore
 Dockerfile
 docker-compose.yml
+nginx.conf
