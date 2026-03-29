@@ -5,15 +5,18 @@ import {
     RotateCcw, Loader2, PackageX, Minus, Plus, Check
 } from 'lucide-react';
 import Navbar from '../components/Navbar';
+import { useCart } from '../context/CartContext';
 
 const API_BASE = import.meta.env.VITE_API_URL || '';
 
 function ProductDetail() {
     const { id } = useParams();
+    const { addToCart } = useCart();
     const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
     const [quantity, setQuantity] = useState(1);
+    const [addedToCart, setAddedToCart] = useState(false);
 
     useEffect(() => {
         const fetchProduct = async () => {
@@ -71,11 +74,16 @@ function ProductDetail() {
 
     const inStock = product.stock > 0;
 
+    const handleAddToCart = () => {
+        addToCart(product, quantity);
+        setAddedToCart(true);
+        setTimeout(() => setAddedToCart(false), 2000);
+    };
+
     return (
         <div className="min-h-screen bg-gray-50">
             <Navbar />
 
-            {/* Breadcrumb */}
             <div className="bg-white border-b border-gray-100">
                 <div className="container mx-auto px-4 py-4">
                     <div className="flex items-center gap-2 text-sm text-gray-500">
@@ -90,7 +98,7 @@ function ProductDetail() {
                             {product.category}
                         </Link>
                         <span>/</span>
-                        <span className="text-gray-800 font-medium truncate max-w-[200px]">{product.name}</span>
+                        <span className="text-gray-800 font-medium truncate max-w-50">{product.name}</span>
                     </div>
                 </div>
             </div>
@@ -105,13 +113,12 @@ function ProductDetail() {
                 </Link>
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                    {/* Product Image */}
                     <div className="relative">
                         <div className="rounded-2xl overflow-hidden bg-white border border-gray-100 shadow-sm">
                             <img
                                 src={product.image}
                                 alt={product.name}
-                                className="w-full h-[500px] object-cover"
+                                className="w-full h-125 object-cover"
                             />
                         </div>
                         {discountPercent > 0 && (
@@ -123,7 +130,6 @@ function ProductDetail() {
                         )}
                     </div>
 
-                    {/* Product Info */}
                     <div>
                         <div className="mb-2">
                             <Link
@@ -136,7 +142,6 @@ function ProductDetail() {
 
                         <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">{product.name}</h1>
 
-                        {/* Rating */}
                         <div className="flex items-center gap-3 mb-6">
                             <div className="flex text-yellow-400">
                                 {[1, 2, 3, 4, 5].map(s => (
@@ -147,11 +152,8 @@ function ProductDetail() {
                                 ))}
                             </div>
                             <span className="text-gray-600 font-medium">{product.rating}</span>
-                            <span className="text-gray-400">•</span>
-                            <span className="text-gray-500">{product.reviewCount} reviews</span>
                         </div>
 
-                        {/* Price */}
                         <div className="flex items-end gap-3 mb-6">
                             <span className="text-4xl font-bold text-gray-900">${product.price.toFixed(2)}</span>
                             {product.originalPrice && (
@@ -166,10 +168,8 @@ function ProductDetail() {
                             )}
                         </div>
 
-                        {/* Description */}
                         <p className="text-gray-600 leading-relaxed mb-8 text-lg">{product.description}</p>
 
-                        {/* Stock Status */}
                         <div className="mb-6">
                             {inStock ? (
                                 <div className="flex items-center gap-2 text-green-600">
@@ -186,7 +186,6 @@ function ProductDetail() {
                             )}
                         </div>
 
-                        {/* Quantity & Add to Cart */}
                         {inStock && (
                             <div className="flex flex-col sm:flex-row gap-4 mb-8">
                                 <div className="flex items-center border border-gray-200 rounded-xl overflow-hidden">
@@ -196,7 +195,7 @@ function ProductDetail() {
                                     >
                                         <Minus className="h-4 w-4" />
                                     </button>
-                                    <span className="px-6 py-3 font-semibold text-gray-800 min-w-[60px] text-center">
+                                    <span className="px-6 py-3 font-semibold text-gray-800 min-w-15 text-center">
                                         {quantity}
                                     </span>
                                     <button
@@ -207,9 +206,16 @@ function ProductDetail() {
                                     </button>
                                 </div>
 
-                                <button className="flex-1 flex items-center justify-center gap-3 px-8 py-4 bg-yellow-500 text-white font-bold rounded-xl hover:bg-yellow-600 transition-all transform hover:scale-[1.02] shadow-lg shadow-yellow-500/25">
+                                <button
+                                    onClick={handleAddToCart}
+                                    className={`flex-1 flex items-center justify-center gap-3 px-8 py-4 font-bold rounded-xl transition-all transform hover:scale-[1.02] shadow-lg ${
+                                        addedToCart
+                                            ? 'bg-green-500 shadow-green-500/25 hover:bg-green-600'
+                                            : 'bg-yellow-500 shadow-yellow-500/25 hover:bg-yellow-600'
+                                    }`}
+                                >
                                     <ShoppingCart className="h-5 w-5" />
-                                    Add to Cart
+                                    {addedToCart ? 'Added to Cart!' : 'Add to Cart'}
                                 </button>
 
                                 <button className="p-4 border border-gray-200 rounded-xl text-gray-500 hover:text-red-500 hover:border-red-200 transition-colors">
@@ -218,7 +224,6 @@ function ProductDetail() {
                             </div>
                         )}
 
-                        {/* Tags */}
                         {product.tags && product.tags.length > 0 && (
                             <div className="flex flex-wrap gap-2 mb-8">
                                 {product.tags.map(tag => (
@@ -232,7 +237,6 @@ function ProductDetail() {
                             </div>
                         )}
 
-                        {/* Guarantees */}
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-8 border-t border-gray-100">
                             <div className="flex items-center gap-3 p-3">
                                 <div className="p-2 bg-yellow-100 rounded-full">
