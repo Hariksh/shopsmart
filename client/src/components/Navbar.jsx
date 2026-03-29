@@ -2,6 +2,7 @@ import { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ShoppingBag, Search, Menu, X, User, Heart, ShoppingCart, LogOut, LayoutDashboard } from 'lucide-react';
 import AuthContext from '../context/AuthContext';
+import CartButton from './CartButton';
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -81,15 +82,10 @@ const Navbar = () => {
                             <Heart className="h-6 w-6" />
                             <span className="text-xs font-medium">Wishlist</span>
                         </button>
-                        <button className="flex flex-col items-center gap-1 text-gray-600 hover:text-yellow-600 transition-colors relative">
-                            <div className="relative">
-                                <ShoppingCart className="h-6 w-6" />
-                                <span className="absolute -top-1 -right-1 bg-yellow-500 text-white text-[10px] font-bold h-4 w-4 rounded-full flex items-center justify-center">
-                                    2
-                                </span>
-                            </div>
+                        <div className="flex flex-col items-center gap-1 text-gray-600 hover:text-yellow-600 transition-colors">
+                            <CartButton />
                             <span className="text-xs font-medium">Cart</span>
-                        </button>
+                        </div>
                     </div>
 
                     <button

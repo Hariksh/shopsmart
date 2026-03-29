@@ -1,10 +1,13 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
+import { CartProvider } from './context/CartContext';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Products from './pages/Products';
 import ProductDetail from './pages/ProductDetail';
+import Cart from './pages/Cart';
+import Checkout from './pages/Checkout';
 import AdminRoute from './components/AdminRoute';
 import AdminDashboard from './pages/AdminDashboard';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -18,27 +21,31 @@ import Furniture from './pages/Furniture';
 function App() {
     return (
         <AuthProvider>
-            <Router>
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/signup" element={<Signup />} />
-                    <Route path="/products" element={<Products />} />
-                    <Route path="/products/:id" element={<ProductDetail />} />
-                    <Route path="/electronics" element={<Electronics />} />
-                    <Route path="/fashion" element={<Fashion />} />
-                    <Route path="/home-living" element={<HomeLiving />} />
-                    <Route path="/accessories" element={<Accessories />} />
-                    <Route path="/furniture" element={<Furniture />} />
-                    <Route element={<ProtectedRoute />}>
-                        <Route path="/profile" element={<Profile />} />
-                    </Route>
+            <CartProvider>
+                <Router>
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/signup" element={<Signup />} />
+                        <Route path="/products" element={<Products />} />
+                        <Route path="/products/:id" element={<ProductDetail />} />
+                        <Route path="/cart" element={<Cart />} />
+                        <Route path="/checkout" element={<Checkout />} />
+                        <Route path="/electronics" element={<Electronics />} />
+                        <Route path="/fashion" element={<Fashion />} />
+                        <Route path="/home-living" element={<HomeLiving />} />
+                        <Route path="/accessories" element={<Accessories />} />
+                        <Route path="/furniture" element={<Furniture />} />
+                        <Route element={<ProtectedRoute />}>
+                            <Route path="/profile" element={<Profile />} />
+                        </Route>
 
-                    <Route element={<AdminRoute />}>
-                        <Route path="/admin" element={<AdminDashboard />} />
-                    </Route>
-                </Routes>
-            </Router>
+                        <Route element={<AdminRoute />}>
+                            <Route path="/admin" element={<AdminDashboard />} />
+                        </Route>
+                    </Routes>
+                </Router>
+            </CartProvider>
         </AuthProvider>
     );
 }
