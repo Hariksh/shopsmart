@@ -51,7 +51,7 @@ function Furniture() {
     return (
         <div className="min-h-screen bg-stone-50">
             <Navbar />
-            <div className="relative bg-gradient-to-br from-amber-900 via-yellow-900 to-stone-900 text-white overflow-hidden">
+            <div className="relative bg-linear-to-br from-amber-900 via-yellow-900 to-stone-900 text-white overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <div className="absolute inset-0 bg-black opacity-35"></div>
                 </div>
@@ -63,7 +63,7 @@ function Furniture() {
                             Handcrafted Comfort
                         </div>
                         <h1 className="text-5xl md:text-6xl font-extrabold mb-6 leading-tight">
-                            Furnish Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-yellow-200">Dream Home</span>
+                            Furnish Your <span className="text-transparent bg-clip-text bg-linear-to-r from-amber-400 to-yellow-200">Dream Home</span>
                         </h1>
                         <p className="text-lg text-amber-100 mb-8 max-w-lg">
                             Explore premium furniture crafted for comfort and style. From elegant sofas to modern beds, find pieces that transform any room.
@@ -124,7 +124,7 @@ function Furniture() {
                                 <Link
                                     key={product.id}
                                     to={`/products/${product.id}`}
-                                    className="group bg-white rounded-[24px] overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_8px_30px_-4px_rgba(217,160,60,0.18)] transition-all duration-300 hover:-translate-y-2 border border-amber-50 hover:border-amber-200 flex flex-col"
+                                    className="group bg-white rounded-3xl overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_8px_30px_-4px_rgba(217,160,60,0.18)] transition-all duration-300 hover:-translate-y-2 border border-amber-50 hover:border-amber-200 flex flex-col"
                                 >
                                     <div className="relative pt-[100%] overflow-hidden bg-[#fdfbf7]">
                                         <img

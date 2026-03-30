@@ -8,10 +8,8 @@ const AdminDashboard = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // Fetch products (could also be paginated/filtered in the future)
         const fetchProducts = async () => {
             try {
-                // Adjust URL based on your backend setup
                 const res = await fetch('http://localhost:5000/api/products');
                 const data = await res.json();
                 setProducts(data.products || []);
@@ -29,7 +27,6 @@ const AdminDashboard = () => {
         if (!window.confirm("Are you sure you want to delete this product?")) return;
 
         try {
-            // Retrieve token from storage (using localStorage simulate for now)
             const token = localStorage.getItem('token');
 
             const res = await fetch(`http://localhost:5000/api/products/${id}`, {
@@ -65,8 +62,6 @@ const AdminDashboard = () => {
                         + Add New Product
                     </button>
                 </div>
-
-                {/* Product Management Table */}
                 <div className="bg-white shadow rounded-lg overflow-hidden">
                     <div className="px-4 py-5 sm:px-6 border-b border-gray-200 flex justify-between items-center">
                         <h3 className="text-lg leading-6 font-medium text-gray-900">
@@ -112,7 +107,7 @@ const AdminDashboard = () => {
                                         <tr key={product._id}>
                                             <td className="px-6 py-4 whitespace-nowrap">
                                                 <div className="flex items-center">
-                                                    <div className="h-10 w-10 flex-shrink-0">
+                                                    <div className="h-10 w-10 shrink-0">
                                                         <img className="h-10 w-10 rounded-md object-cover" src={product.image} alt={product.name} />
                                                     </div>
                                                     <div className="ml-4">

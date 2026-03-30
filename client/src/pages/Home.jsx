@@ -66,7 +66,7 @@ function Home() {
             alt="Hero background"
             className="w-full h-full object-cover opacity-40"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent"></div>
+          <div className="absolute inset-0 bg-linear-to-r from-black/80 to-transparent"></div>
         </div>
 
         <div className="container mx-auto px-4 py-24 md:py-32 relative z-10">
@@ -138,7 +138,7 @@ function Home() {
                 alt={category.name}
                 className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
               />
-              <div className="absolute bottom-0 left-0 right-0 p-6 z-20 bg-gradient-to-t from-black/80 to-transparent">
+              <div className="absolute bottom-0 left-0 right-0 p-6 z-20 bg-linear-to-t from-black/80 to-transparent">
                 <h3 className="text-xl font-bold text-white mb-2">{category.name}</h3>
                 <span className="text-yellow-400 text-sm font-medium flex items-center gap-1 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
                   Shop Now <ArrowRight className="h-4 w-4" />
@@ -279,15 +279,15 @@ function Home() {
               <h4 className="text-lg font-bold mb-6">Contact Us</h4>
               <ul className="space-y-4 text-gray-400">
                 <li className="flex items-start gap-3">
-                  <div className="mt-1">📍</div>
+                  <div className="mt-1"></div>
                   <span>123 Commerce St, Suite 100<br />New York, NY 10001</span>
                 </li>
                 <li className="flex items-center gap-3">
-                  <div>📞</div>
+                  <div></div>
                   <span>+1 (555) 123-4567</span>
                 </li>
                 <li className="flex items-center gap-3">
-                  <div>✉️</div>
+                  <div></div>
                   <span>support@shopsmart.com</span>
                 </li>
               </ul>

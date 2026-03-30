@@ -45,7 +45,7 @@ function Fashion() {
         <div className="min-h-screen bg-gray-50">
             <Navbar />
 
-            <div className="relative bg-gradient-to-br from-rose-900 via-fuchsia-900 to-purple-900 text-white overflow-hidden">
+            <div className="relative bg-linear-to-br from-rose-900 via-fuchsia-900 to-purple-900 text-white overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <div className="absolute inset-0 bg-black opacity-40"></div>
                 </div>
@@ -56,7 +56,7 @@ function Fashion() {
                             Trendsetter Collection
                         </div>
                         <h1 className="text-5xl md:text-6xl font-extrabold mb-6 leading-tight">
-                            Define Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-orange-300">Style</span>
+                            Define Your <span className="text-transparent bg-clip-text bg-linear-to-r from-pink-400 to-orange-300">Style</span>
                         </h1>
                         <p className="text-lg text-pink-100 mb-8 max-w-lg">
                             Explore the latest trends in men&apos;s and women&apos;s fashion. Handpicked apparel designed to make you stand out.
@@ -145,7 +145,7 @@ function Fashion() {
                                         )}
                                     </div>
 
-                                    <div className="p-5 flex flex-col h-[160px]">
+                                    <div className="p-5 flex flex-col h-40">
                                         <div className="flex justify-between items-start mb-1">
                                             <h3 className="font-bold text-gray-900 group-hover:text-pink-600 transition-colors line-clamp-1">
                                                 {product.title}

@@ -39,7 +39,7 @@ function Electronics() {
             <Navbar />
 
             {/* Premium Hero Section */}
-            <div className="relative bg-gradient-to-br from-indigo-900 via-blue-900 to-indigo-800 text-white overflow-hidden">
+            <div className="relative bg-linear-to-br from-indigo-900 via-blue-900 to-indigo-800 text-white overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <div className="absolute inset-0 bg-black opacity-40"></div>
                 </div>
@@ -50,7 +50,7 @@ function Electronics() {
                             Next-Gen Tech
                         </div>
                         <h1 className="text-5xl md:text-6xl font-extrabold mb-6 leading-tight">
-                            Elevate Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Digital Life</span>
+                            Elevate Your <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-cyan-300">Digital Life</span>
                         </h1>
                         <p className="text-lg text-blue-100 mb-8 max-w-lg">
                             Discover the latest in electronics, from high-performance laptops to cutting-edge audio gear. Experience innovation at its finest.

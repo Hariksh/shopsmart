@@ -7,8 +7,6 @@ export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // Here we ideally check local storage or make a /api/auth/me request
-        // For now, we simulate an admin user if a specific flag is in localStorage
         const storedUser = localStorage.getItem('user');
         if (storedUser) {
             setUser(JSON.parse(storedUser));

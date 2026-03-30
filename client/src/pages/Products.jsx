@@ -148,7 +148,7 @@ function Products() {
                     `}>
                         <div className={`
                             ${mobileFiltersOpen ? 'absolute right-0 top-0 h-full w-72 bg-white shadow-xl p-6' : ''}
-                            md:w-56 md:flex-shrink-0
+                            md:w-56 md:shrink-0
                         `}>
                             {mobileFiltersOpen && (
                                 <div className="flex items-center justify-between mb-6 md:hidden">

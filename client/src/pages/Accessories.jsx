@@ -54,8 +54,8 @@ function Accessories() {
         <div className="min-h-screen bg-purple-50/30">
             <Navbar />
             <div className="relative bg-[#faf5ff] text-gray-800 overflow-hidden">
-                <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-purple-200/50 rounded-full blur-[100px] mix-blend-multiply opacity-70"></div>
-                <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-fuchsia-100/60 rounded-full blur-[100px] mix-blend-multiply opacity-70"></div>
+                <div className="absolute top-0 left-0 w-125 h-125 bg-purple-200/50 rounded-full blur-[100px] mix-blend-multiply opacity-70"></div>
+                <div className="absolute bottom-0 right-0 w-100 h-100 bg-fuchsia-100/60 rounded-full blur-[100px] mix-blend-multiply opacity-70"></div>
                 
                 <div className="container mx-auto px-4 py-20 relative z-10 flex flex-col md:flex-row items-center border-b border-purple-100">
                     <div className="md:w-1/2 mb-10 md:mb-0">
@@ -64,7 +64,7 @@ function Accessories() {
                             Premium Finishing Touches
                         </div>
                         <h1 className="text-5xl md:text-6xl font-extrabold mb-6 leading-tight text-gray-900">
-                            Perfect Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-fuchsia-400">Unique Style</span>
+                            Perfect Your <span className="text-transparent bg-clip-text bg-linear-to-r from-purple-500 to-fuchsia-400">Unique Style</span>
                         </h1>
                         <p className="text-lg text-gray-600 mb-8 max-w-lg font-light leading-relaxed">
                             Discover exquisite jewelry, luxury watches, and trendy sunglasses to bring an elegant finish to every outfit.
@@ -88,7 +88,7 @@ function Accessories() {
                             <img 
                                 src="https://images.unsplash.com/photo-1584302179602-e4c3d3fd629d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
                                 alt="Watches and Jewelry" 
-                                className="rounded-[40px] shadow-2xl border-4 border-white transform rotate-2 hover:rotate-0 transition-transform duration-500 w-[90%] md:w-[450px]" 
+                                className="rounded-[40px] shadow-2xl border-4 border-white transform rotate-2 hover:rotate-0 transition-transform duration-500 w-[90%] md:w-112.5" 
                             />
                             <img 
                                 src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" 
@@ -129,7 +129,7 @@ function Accessories() {
                                 <Link
                                     key={product.id}
                                     to={`/products/${product.id}`}
-                                    className="group bg-white rounded-[24px] overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_8px_30px_-4px_rgba(168,85,247,0.15)] transition-all duration-300 hover:-translate-y-2 border border-purple-50 hover:border-purple-100 flex flex-col"
+                                    className="group bg-white rounded-3xl overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_8px_30px_-4px_rgba(168,85,247,0.15)] transition-all duration-300 hover:-translate-y-2 border border-purple-50 hover:border-purple-100 flex flex-col"
                                 >
                                     <div className="relative pt-[100%] overflow-hidden bg-[#fdfbfb]">
                                         <img

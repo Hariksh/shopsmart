@@ -120,10 +120,10 @@ const Profile = () => {
 
                 <div className="flex flex-col md:flex-row gap-8">
                     {/* Sidebar Navigation */}
-                    <div className="w-full md:w-64 flex-shrink-0">
+                    <div className="w-full md:w-64 shrink-0">
                         <div className="bg-white rounded-xl shadow-sm overflow-hidden flex flex-col">
                             {/* User Info Header */}
-                            <div className="p-6 text-center border-b border-gray-100 bg-gradient-to-b from-yellow-50 to-white">
+                            <div className="p-6 text-center border-b border-gray-100 bg-linear-to-b from-yellow-50 to-white">
                                 <div className="relative inline-block">
                                     <div className="h-24 w-24 rounded-full bg-yellow-100 flex items-center justify-center text-yellow-600 border-4 border-white shadow-sm mx-auto">
                                         <span className="text-3xl font-bold uppercase">

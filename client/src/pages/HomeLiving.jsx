@@ -50,8 +50,8 @@ function HomeLiving() {
         <div className="min-h-screen bg-emerald-50/30">
             <Navbar />
             <div className="relative bg-[#f2fdf7] text-gray-800 overflow-hidden">
-                <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-emerald-200/50 rounded-full blur-[100px] mix-blend-multiply opacity-70"></div>
-                <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-teal-100/60 rounded-full blur-[100px] mix-blend-multiply opacity-70"></div>
+                <div className="absolute top-0 right-0 w-125 h-125 bg-emerald-200/50 rounded-full blur-[100px] mix-blend-multiply opacity-70"></div>
+                <div className="absolute bottom-0 left-0 w-100 h-100 bg-teal-100/60 rounded-full blur-[100px] mix-blend-multiply opacity-70"></div>
                 
                 <div className="container mx-auto px-4 py-20 relative z-10 flex flex-col md:flex-row items-center border-b border-emerald-100">
                     <div className="md:w-1/2 mb-10 md:mb-0">
@@ -60,7 +60,7 @@ function HomeLiving() {
                             Premium Comfort
                         </div>
                         <h1 className="text-5xl md:text-6xl font-extrabold mb-6 leading-tight text-gray-900">
-                            Elevate Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-teal-400">Living Space</span>
+                            Elevate Your <span className="text-transparent bg-clip-text bg-linear-to-r from-emerald-500 to-teal-400">Living Space</span>
                         </h1>
                         <p className="text-lg text-gray-600 mb-8 max-w-lg font-light leading-relaxed">
                             Discover our curated collection of premium furniture, elegant decor, and essential kitchen accessories to make your house a dream home.
@@ -84,7 +84,7 @@ function HomeLiving() {
                             <img 
                                 src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
                                 alt="Living room decor" 
-                                className="rounded-[40px] shadow-2xl border-4 border-white transform -rotate-2 hover:rotate-0 transition-transform duration-500 w-[90%] md:w-[450px]" 
+                                className="rounded-[40px] shadow-2xl border-4 border-white transform -rotate-2 hover:rotate-0 transition-transform duration-500 w-[90%] md:w-112.5" 
                             />
                             <img 
                                 src="https://images.unsplash.com/photo-1556020685-ae41abfc9365?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" 
@@ -124,7 +124,7 @@ function HomeLiving() {
                                 <Link
                                     key={product.id}
                                     to={`/products/${product.id}`}
-                                    className="group bg-white rounded-[24px] overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_8px_30px_-4px_rgba(16,185,129,0.15)] transition-all duration-300 hover:-translate-y-2 border border-emerald-50 hover:border-emerald-100 flex flex-col"
+                                    className="group bg-white rounded-3xl overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_8px_30px_-4px_rgba(16,185,129,0.15)] transition-all duration-300 hover:-translate-y-2 border border-emerald-50 hover:border-emerald-100 flex flex-col"
                                 >
                                     <div className="relative pt-[100%] overflow-hidden bg-[#fdfbfb]">
                                         <img

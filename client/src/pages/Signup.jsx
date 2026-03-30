@@ -28,7 +28,7 @@ const Signup = () => {
 
     return (
         <div className="min-h-screen flex">
-            <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-yellow-400 to-yellow-600 relative">
+            <div className="hidden lg:flex lg:w-1/2 bg-linear-to-br from-yellow-400 to-yellow-600 relative">
                 <div className="absolute inset-0 bg-black/20"></div>
                 <div className="relative z-10 flex flex-col justify-center items-center text-white p-12">
                     <h1 className="text-5xl font-bold mb-4">ShopSmart</h1>
