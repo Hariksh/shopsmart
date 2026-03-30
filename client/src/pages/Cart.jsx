@@ -1,6 +1,4 @@
-import React from 'react';
 import { useCart } from '../context/CartContext';
-import Button from '../components/Button';
 import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
@@ -16,7 +14,7 @@ const Cart = () => {
             Your Cart is Empty
           </h1>
           <p className="text-gray-600 mb-8">
-            Looks like you haven't added anything to your cart yet.
+            Looks like you haven&apos;t added anything to your cart yet.
           </p>
           <button
             onClick={() => navigate('/products')}
