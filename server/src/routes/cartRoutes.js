@@ -7,8 +7,8 @@ const {
   removeFromCart,
   clearCart,
 } = require("../controllers/cartController");
-const authMiddleware = require("../middleware/authMiddleware");
-router.use(authMiddleware);
+const {protect} = require("../middleware/authMiddleware");
+router.use(protect);
 router.get("/", getCart);
 router.post("/add", addToCart);
 router.put("/update", updateCartItem);
