@@ -1,9 +1,13 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { User, Mail, Lock, UserPlus, Phone } from 'lucide-react';
+import AuthContext from '../context/AuthContext';
+const API_BASE = import.meta.env.VITE_API_URL || '';
 
 const Signup = () => {
     const navigate = useNavigate();
+    const { login } = useContext(AuthContext);
+    const [loading, setLoading] = useState(false);
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -19,11 +23,44 @@ const Signup = () => {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Signup attempt:', formData);
-        // Simulate successful signup
-        navigate('/');
+
+        if (formData.password !== formData.confirmPassword) {
+            alert("Passwords do not match");
+            return;
+        }
+        setLoading(true);
+        try {
+            const payload = {
+                username: formData.name,
+                email: formData.email,
+                phone: formData.phone,
+                password: formData.password
+            };
+
+            const res = await fetch(`${API_BASE}/api/auth/signup`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+            const data = await res.json();
+
+            if (res.ok) {
+                const userObj = { email: payload.email, role: 'user', username: payload.username };
+                login(userObj);
+                localStorage.setItem('token', data.token);
+                navigate('/');
+            } else {
+                const errorMsg = data.errors ? data.errors.map(err => err.msg).join('\n') : data.msg;
+                alert(errorMsg || 'Signup failed');
+            }
+        } catch (err) {
+            console.error(err);
+            alert("An error occurred during signup");
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -130,8 +167,9 @@ const Signup = () => {
 
                         <button
                             type="submit"
-                            className="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-3 rounded-md transition-colors mt-6">
-                            Create Account
+                            disabled={loading}
+                            className="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-3 rounded-md transition-colors mt-6 disabled:opacity-50">
+                            {loading ? 'Creating Account...' : 'Create Account'}
                         </button>
                     </form>
 

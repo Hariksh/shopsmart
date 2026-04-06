@@ -3,6 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Mail, Lock, LogIn } from 'lucide-react';
 import AuthContext from '../context/AuthContext';
 
+const API_BASE = import.meta.env.VITE_API_URL || '';
+
 const Login = () => {
   const navigate = useNavigate();
   const { login } = useContext(AuthContext);
@@ -21,7 +23,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch('http://localhost:5005/api/auth/login', {
+      const res = await fetch(`${API_BASE}/api/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
@@ -35,7 +37,8 @@ const Login = () => {
         localStorage.setItem('token', data.token);
         navigate('/');
       } else {
-        alert(data.msg || 'Login failed');
+        const errorMsg = data.errors ? data.errors.map(err => err.msg).join('\n') : data.msg;
+        alert(errorMsg || 'Login failed');
       }
     } catch (err) {
       console.error(err);
