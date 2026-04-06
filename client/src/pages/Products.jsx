@@ -3,8 +3,9 @@ import { Link, useSearchParams } from 'react-router-dom';
 import {
     Search, ChevronDown, Star, Heart, ShoppingCart,
     ChevronLeft, ChevronRight, Loader2, PackageX, X, SlidersHorizontal
-} from 'lucide-react';
+, Check} from 'lucide-react';
 import Navbar from '../components/Navbar';
+import { useCart } from '../context/CartContext';
 
 const API_BASE = import.meta.env.VITE_API_URL || '';
 
@@ -18,6 +19,9 @@ const SORT_OPTIONS = [
 ];
 
 function Products() {
+    const { addToCart } = useCart();
+    const [addedProductId, setAddedProductId] = useState(null);
+
     const [searchParams, setSearchParams] = useSearchParams();
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);

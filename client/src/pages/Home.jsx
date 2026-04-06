@@ -11,8 +11,13 @@ import {
   ArrowRight
 } from 'lucide-react';
 import Navbar from '../components/Navbar';
+import { useCart } from '../context/CartContext';
+import { useState } from 'react';
+import { Check } from 'lucide-react';
 
 function Home() {
+  const { addToCart } = useCart();
+  const [addedProductId, setAddedProductId] = useState(null);
 
   const categories = [
     { name: 'Electronics', image: 'https://images.unsplash.com/photo-1498049860654-af1a5c5668ba?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60' },
@@ -198,8 +203,16 @@ function Home() {
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-xl font-bold text-gray-900">${product.price}</span>
-                    <button className="p-2 bg-gray-100 rounded-lg text-gray-600 hover:bg-yellow-500 hover:text-white transition-all transform hover:scale-110">
-                      <ShoppingCart className="h-5 w-5" />
+                    <button 
+                      onClick={(e) => {
+                        e.preventDefault();
+                        addToCart(product);
+                        setAddedProductId(product.id);
+                        setTimeout(() => setAddedProductId(null), 2000);
+                      }}
+                      className={`p-2 rounded-lg transition-all transform hover:scale-110 ${addedProductId === product.id ? 'bg-green-500 text-white' : 'bg-gray-100 text-gray-600 hover:bg-yellow-500 hover:text-white'}`}
+                    >
+                      {addedProductId === product.id ? <Check className="h-5 w-5" /> : <ShoppingCart className="h-5 w-5" />}
                     </button>
                   </div>
                 </div>

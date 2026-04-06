@@ -1,11 +1,14 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ShoppingCart, Star, Heart, Lamp, Coffee, Armchair, Home, Loader2, PackageX } from 'lucide-react';
+import { ShoppingCart, Star, Heart, Lamp, Coffee, Armchair, Home, Loader2, PackageX, Check } from 'lucide-react';
 import Navbar from '../components/Navbar';
+import { useCart } from '../context/CartContext';
 
 function HomeLiving() {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
+    const { addToCart } = useCart();
+    const [addedProductId, setAddedProductId] = useState(null);
 
     useEffect(() => {
         const fetchLiving = async () => {
@@ -181,10 +184,15 @@ function HomeLiving() {
                                                 </span>
                                             </div>
                                             <button
-                                                onClick={(e) => { e.preventDefault(); }}
-                                                className="flex items-center justify-center p-3 bg-emerald-50 rounded-full text-emerald-600 hover:bg-emerald-500 hover:text-white transition-all group-hover:shadow-md"
+                                                onClick={(e) => { 
+                                                    e.preventDefault(); 
+                                                    addToCart(product);
+                                                    setAddedProductId(product.id);
+                                                    setTimeout(() => setAddedProductId(null), 2000);
+                                                }}
+                                                className={`flex items-center justify-center p-3 rounded-full transition-all group-hover:shadow-md ${addedProductId === product.id ? 'bg-emerald-500 text-white' : 'bg-emerald-50 text-emerald-600 hover:bg-emerald-500 hover:text-white'}`}
                                             >
-                                                <ShoppingCart className="h-5 w-5" />
+                                                {addedProductId === product.id ? <Check className="h-5 w-5" /> : <ShoppingCart className="h-5 w-5" />}
                                             </button>
                                         </div>
                                     </div>

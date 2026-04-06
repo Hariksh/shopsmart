@@ -1,11 +1,15 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ShoppingCart, Star, Heart, Cpu, Smartphone, Monitor, Headphones, Zap, ArrowRight, Loader2, PackageX } from 'lucide-react';
+import { ShoppingCart, Star, Heart, Cpu, Smartphone, Monitor, Headphones, Zap, ArrowRight, Loader2, PackageX , Check} from 'lucide-react';
 import Navbar from '../components/Navbar';
+import { useCart } from '../context/CartContext';
 
 const API_BASE = import.meta.env.VITE_API_URL || '';
 
 function Electronics() {
+    const { addToCart } = useCart();
+    const [addedProductId, setAddedProductId] = useState(null);
+
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -162,10 +166,16 @@ function Electronics() {
                                             )}
                                         </div>
                                         <button
-                                            onClick={(e) => { e.preventDefault(); }}
-                                            className="p-2.5 bg-blue-50 rounded-xl text-blue-600 hover:bg-blue-600 hover:text-white transition-all transform hover:scale-105"
+                                            onClick={(e) => { 
+                                                e.preventDefault(); 
+                                                const p = typeof product !== 'undefined' ? product : item;
+                                                addToCart(p);
+                                                setAddedProductId(p._id || p.id);
+                                                setTimeout(() => setAddedProductId(null), 2000);
+                                            }}
+                                            className={`${"p-2.5 bg-blue-50 rounded-xl text-blue-600 hover:bg-blue-600 hover:text-white transition-all transform hover:scale-105"} ${(addedProductId === (typeof product !== 'undefined' ? (product._id || product.id) : (item._id || item.id))) ? '!bg-green-500 !text-white' : ''}`}
                                         >
-                                            <ShoppingCart className="h-5 w-5" />
+                                            {(addedProductId === (typeof product !== 'undefined' ? (product._id || product.id) : (item._id || item.id))) ? <Check className="h-5 w-5" /> : <ShoppingCart className="h-5 w-5" />}
                                         </button>
                                     </div>
                                 </div>

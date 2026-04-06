@@ -37,7 +37,7 @@ const Cart = () => {
             <div className="bg-white rounded-lg shadow">
               {cartItems.map((item) => (
                 <div
-                  key={item._id}
+                  key={item._id || item.id}
                   className="flex items-center gap-4 p-6 border-b last:border-b-0"
                 >
                   <img
@@ -57,7 +57,7 @@ const Cart = () => {
                   <div className="flex items-center gap-2 bg-gray-100 rounded px-3 py-2">
                     <button
                       onClick={() =>
-                        updateQuantity(item._id, item.quantity - 1)
+                        updateQuantity(item._id || item.id, item.quantity - 1)
                       }
                       className="text-gray-600 hover:text-gray-900 font-bold"
                     >
@@ -66,7 +66,7 @@ const Cart = () => {
                     <span className="px-3 font-semibold">{item.quantity}</span>
                     <button
                       onClick={() =>
-                        updateQuantity(item._id, item.quantity + 1)
+                        updateQuantity(item._id || item.id, item.quantity + 1)
                       }
                       className="text-gray-600 hover:text-gray-900 font-bold"
                     >
@@ -79,7 +79,7 @@ const Cart = () => {
                     </p>
                   </div>
                   <button
-                    onClick={() => removeFromCart(item._id)}
+                    onClick={() => removeFromCart(item._id || item.id)}
                     className="text-red-600 hover:text-red-800 font-medium ml-2"
                   >
                     Remove

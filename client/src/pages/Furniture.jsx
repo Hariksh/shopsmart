@@ -1,9 +1,13 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ShoppingCart, Star, Heart, Armchair, Lamp, Bed, Sofa, ArrowRight, Loader2, PackageX } from 'lucide-react';
+import { ShoppingCart, Star, Heart, Armchair, Lamp, Bed, Sofa, ArrowRight, Loader2, PackageX , Check} from 'lucide-react';
 import Navbar from '../components/Navbar';
+import { useCart } from '../context/CartContext';
 
 function Furniture() {
+    const { addToCart } = useCart();
+    const [addedProductId, setAddedProductId] = useState(null);
+
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -181,11 +185,17 @@ function Furniture() {
                                                 </span>
                                             </div>
                                             <button
-                                                onClick={(e) => { e.preventDefault(); }}
-                                                className="flex items-center justify-center p-3 bg-amber-50 rounded-full text-amber-700 hover:bg-amber-600 hover:text-white transition-all group-hover:shadow-md"
-                                            >
-                                                <ShoppingCart className="h-5 w-5" />
-                                            </button>
+                                            onClick={(e) => { 
+                                                e.preventDefault(); 
+                                                const p = typeof product !== 'undefined' ? product : item;
+                                                addToCart(p);
+                                                setAddedProductId(p._id || p.id);
+                                                setTimeout(() => setAddedProductId(null), 2000);
+                                            }}
+                                            className={`${"flex items-center justify-center p-3 bg-amber-50 rounded-full text-amber-700 hover:bg-amber-600 hover:text-white transition-all group-hover:shadow-md"} ${(addedProductId === (typeof product !== 'undefined' ? (product._id || product.id) : (item._id || item.id))) ? '!bg-green-500 !text-white' : ''}`}
+                                        >
+                                            {(addedProductId === (typeof product !== 'undefined' ? (product._id || product.id) : (item._id || item.id))) ? <Check className="h-5 w-5" /> : <ShoppingCart className="h-5 w-5" />}
+                                        </button>
                                         </div>
                                     </div>
                                 </Link>
