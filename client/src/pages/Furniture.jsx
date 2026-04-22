@@ -187,14 +187,13 @@ function Furniture() {
                                             <button
                                             onClick={(e) => { 
                                                 e.preventDefault(); 
-                                                const p = typeof product !== 'undefined' ? product : item;
-                                                addToCart(p);
-                                                setAddedProductId(p._id || p.id);
+                                                addToCart(product);
+                                                setAddedProductId(product._id || product.id);
                                                 setTimeout(() => setAddedProductId(null), 2000);
                                             }}
-                                            className={`${"flex items-center justify-center p-3 bg-amber-50 rounded-full text-amber-700 hover:bg-amber-600 hover:text-white transition-all group-hover:shadow-md"} ${(addedProductId === (typeof product !== 'undefined' ? (product._id || product.id) : (item._id || item.id))) ? '!bg-green-500 !text-white' : ''}`}
+                                            className={`${"flex items-center justify-center p-3 bg-amber-50 rounded-full text-amber-700 hover:bg-amber-600 hover:text-white transition-all group-hover:shadow-md"} ${(addedProductId === (product._id || product.id)) ? '!bg-green-500 !text-white' : ''}`}
                                         >
-                                            {(addedProductId === (typeof product !== 'undefined' ? (product._id || product.id) : (item._id || item.id))) ? <Check className="h-5 w-5" /> : <ShoppingCart className="h-5 w-5" />}
+                                            {(addedProductId === (product._id || product.id)) ? <Check className="h-5 w-5" /> : <ShoppingCart className="h-5 w-5" />}
                                         </button>
                                         </div>
                                     </div>

@@ -181,14 +181,13 @@ function Fashion() {
                                             <button
                                             onClick={(e) => { 
                                                 e.preventDefault(); 
-                                                const p = typeof product !== 'undefined' ? product : item;
-                                                addToCart(p);
-                                                setAddedProductId(p._id || p.id);
+                                                addToCart(product);
+                                                setAddedProductId(product._id || product.id);
                                                 setTimeout(() => setAddedProductId(null), 2000);
                                             }}
-                                            className={`${"p-2.5 bg-pink-50 rounded-xl text-pink-600 hover:bg-pink-600 hover:text-white transition-all transform hover:scale-105"} ${(addedProductId === (typeof product !== 'undefined' ? (product._id || product.id) : (item._id || item.id))) ? '!bg-green-500 !text-white' : ''}`}
+                                            className={`${"p-2.5 bg-pink-50 rounded-xl text-pink-600 hover:bg-pink-600 hover:text-white transition-all transform hover:scale-105"} ${(addedProductId === (product._id || product.id)) ? '!bg-green-500 !text-white' : ''}`}
                                         >
-                                            {(addedProductId === (typeof product !== 'undefined' ? (product._id || product.id) : (item._id || item.id))) ? <Check className="h-5 w-5" /> : <ShoppingCart className="h-5 w-5" />}
+                                            {(addedProductId === (product._id || product.id)) ? <Check className="h-5 w-5" /> : <ShoppingCart className="h-5 w-5" />}
                                         </button>
                                         </div>
                                     </div>
