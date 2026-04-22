@@ -22,6 +22,7 @@ const Checkout = () => {
     city: '',
     state: '',
     zipCode: '',
+    country: 'India',
     paymentMethod: 'COD', // COD, Card, UPI
   });
 
@@ -80,7 +81,8 @@ const Checkout = () => {
         !formData.address ||
         !formData.city ||
         !formData.state ||
-        !formData.zipCode
+        !formData.zipCode ||
+        !formData.country
       ) {
         setError('Please fill in all fields');
         setLoading(false);
@@ -90,23 +92,19 @@ const Checkout = () => {
       // Prepare order data
       const orderData = {
         orderItems: cartItems.map((item) => ({
-          productId: item._id || item.id,
+          product: item.productId || item._id || item.id,
           name: item.name,
           price: item.price,
-          quantity: item.quantity,
+          qty: item.quantity,
           image: item.image,
         })),
         shippingAddress: {
-          fullName: formData.fullName,
-          email: formData.email,
-          phone: formData.phone,
           address: formData.address,
           city: formData.city,
-          state: formData.state,
-          zipCode: formData.zipCode,
+          postalCode: formData.zipCode,
+          country: formData.country,
         },
         paymentMethod: formData.paymentMethod,
-        totalAmount: cartTotal,
       };
 
       // Create order
@@ -119,15 +117,15 @@ const Checkout = () => {
         body: JSON.stringify(orderData),
       });
 
+      const data = await response.json();
       if (!response.ok) {
-        throw new Error('Failed to create order');
+        const errorMsg = data.error ? `${data.msg}: ${data.error}` : (data.msg || data.message || 'Failed to create order');
+        throw new Error(errorMsg);
       }
-
-      const order = await response.json();
 
       // Clear cart and navigate to success page
       clearCart();
-      navigate(`/order-success/${order._id}`);
+      navigate(`/order-success/${data._id}`);
     } catch (err) {
       setError(err.message || 'Checkout failed. Please try again.');
     } finally {
@@ -208,6 +206,14 @@ const Checkout = () => {
                     name="state"
                     placeholder="State"
                     value={formData.state}
+                    onChange={handleInputChange}
+                    className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                  />
+                  <input
+                    type="text"
+                    name="country"
+                    placeholder="Country"
+                    value={formData.country}
                     onChange={handleInputChange}
                     className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
                   />

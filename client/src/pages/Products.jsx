@@ -300,10 +300,20 @@ function Products() {
                                                         )}
                                                     </div>
                                                     <button
-                                                        onClick={(e) => e.preventDefault()}
-                                                        className="p-2 bg-gray-100 rounded-lg text-gray-600 hover:bg-yellow-500 hover:text-white transition-all transform hover:scale-110"
+                                                        onClick={(e) => {
+                                                            e.preventDefault();
+                                                            e.stopPropagation();
+                                                            addToCart(product);
+                                                            setAddedProductId(product._id);
+                                                            setTimeout(() => setAddedProductId(null), 2000);
+                                                        }}
+                                                        className={`p-2 rounded-lg transition-all transform hover:scale-110 ${
+                                                            addedProductId === product._id
+                                                                ? 'bg-green-500 text-white'
+                                                                : 'bg-gray-100 text-gray-600 hover:bg-yellow-500 hover:text-white'
+                                                        }`}
                                                     >
-                                                        <ShoppingCart className="h-5 w-5" />
+                                                        {addedProductId === product._id ? <Check className="h-5 w-5" /> : <ShoppingCart className="h-5 w-5" />}
                                                     </button>
                                                 </div>
                                             </div>

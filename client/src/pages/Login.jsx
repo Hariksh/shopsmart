@@ -31,17 +31,21 @@ const Login = () => {
       const data = await res.json();
 
       if (res.ok) {
-        // In a real app, decode token or fetch /me. Here we simulate for admin testing
-        const userObj = { email: formData.email, role: formData.email === 'admin@shopsmart.com' ? 'admin' : 'user' };
+        // Store user in context and token in localStorage
+        const userObj = { 
+          email: formData.email, 
+          role: formData.email.toLowerCase() === 'admin@shopsmart.com' ? 'admin' : 'user' 
+        };
         login(userObj);
         localStorage.setItem('token', data.token);
         navigate('/');
       } else {
         const errorMsg = data.errors ? data.errors.map(err => err.msg).join('\n') : data.msg;
-        alert(errorMsg || 'Login failed');
+        alert(errorMsg || 'Login failed: Invalid credentials');
       }
     } catch (err) {
-      console.error(err);
+      console.error('Login error:', err);
+      alert('Login failed: Could not connect to the server. Please ensure the backend is running.');
     }
   };
 

@@ -17,6 +17,7 @@ import Fashion from './pages/Fashion';
 import HomeLiving from './pages/HomeLiving';
 import Accessories from './pages/Accessories';
 import Furniture from './pages/Furniture';
+import OrderSuccess from './pages/OrderSuccess';
 
 function App() {
     return (
@@ -38,6 +39,7 @@ function App() {
                         <Route path="/furniture" element={<Furniture />} />
                         <Route element={<ProtectedRoute />}>
                             <Route path="/profile" element={<Profile />} />
+                            <Route path="/order-success/:orderId" element={<OrderSuccess />} />
                         </Route>
 
                         <Route element={<AdminRoute />}>

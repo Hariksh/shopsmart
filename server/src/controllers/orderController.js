@@ -29,9 +29,10 @@ exports.createOrder = async (req, res) => {
 
         // Validate products exist and have sufficient stock
         const productIds = orderItems.map(item => item.product);
-        const products = await Product.find({ _id: { $in: productIds } });
+        const uniqueProductIds = [...new Set(productIds)];
+        const products = await Product.find({ _id: { $in: uniqueProductIds } });
 
-        if (products.length !== productIds.length) {
+        if (products.length !== uniqueProductIds.length) {
             return res.status(400).json({ msg: 'One or more products not found' });
         }
 
