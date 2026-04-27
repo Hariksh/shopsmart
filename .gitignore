@@ -36,7 +36,3 @@ pnpm-debug.log*
 .vercel
 
 # Ops
-.dockerignore
-Dockerfile
-docker-compose.yml
-nginx.conf
