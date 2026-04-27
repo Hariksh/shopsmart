@@ -13,7 +13,7 @@ fi
 if [ ! -f "server/.env" ]; then
     echo "⚠️ server/.env file not found. Creating a default one..."
     echo "PORT=5001" > server/.env
-    echo "MONGODB_URI=mongodb://localhost:27017/shopsmart" >> server/.env
+    echo "MONGODB_URI=mongodb://mongodb:27017/shopsmart" >> server/.env
     echo "JWT_SECRET=yoursecretkey" >> server/.env
 fi
 
