@@ -62,8 +62,4 @@ ShopSmart is an industry-standard e-commerce platform built for speed, security,
 ## 10. Future Roadmap
 *   **PWA Support:** Offline capabilities and push notifications for mobile users.
 *   **Infrastructure as Code (IaC):** Migrating to Terraform or AWS CDK for automated provisioning.
-*   **Advanced Analytics:** Integration with Google Analytics 4 for deep user behavior insights.
-
-
-
-
+*   **Advanced Analytics:** Integration with Google Analytics 4 for deep user behavior insights
