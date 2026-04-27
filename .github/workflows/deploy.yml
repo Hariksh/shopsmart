@@ -1,23 +1,49 @@
-name: Deploy
+name: Deploy to ECR
 
 on:
   push:
     branches: [main]
 
-jobs:
-  ci:
-    name: Run CI
-    uses: ./.github/workflows/ci.yml
+env:
+  AWS_REGION: us-east-1
+  ECR_BACKEND: shopsmart-backend
+  ECR_FRONTEND: shopsmart-frontend
 
+jobs:
   deploy:
-    name: Trigger Render Deploy
     runs-on: ubuntu-latest
-    needs: ci
-    if: github.ref == 'refs/heads/main'
 
     steps:
-      - name: Deploy to Render
-        run: |
-          curl -s -o /dev/null -w "%{http_code}" "${{ secrets.RENDER_DEPLOY_HOOK_URL }}" | grep -q "200" \
-            && echo "Deploy triggered successfully" \
-            || (echo "Deploy trigger failed" && exit 1)
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ env.AWS_REGION }}
+
+    - name: Login to ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v2
+
+    # 🔹 Backend
+    - name: Build & Push Backend
+      working-directory: ./server
+      env:
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        IMAGE_TAG: latest
+      run: |
+        docker build -t $ECR_REGISTRY/$ECR_BACKEND:$IMAGE_TAG .
+        docker push $ECR_REGISTRY/$ECR_BACKEND:$IMAGE_TAG
+
+    # 🔹 Frontend
+    - name: Build & Push Frontend
+      working-directory: ./client
+      env:
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        IMAGE_TAG: latest
+      run: |
+        docker build -t $ECR_REGISTRY/$ECR_FRONTEND:$IMAGE_TAG .
+        docker push $ECR_REGISTRY/$ECR_FRONTEND:$IMAGE_TAG
